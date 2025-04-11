@@ -1,0 +1,96 @@
+/* src/App.css */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Quicksand:wght@500&display=swap');
+
+/* Reinicio básico */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #cfd9df, #e2ebf0);
+  }
+
+
+/* Contenedor principal de la App */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-header {
+  background: linear-gradient(to bottom, #13547a 40%, #80d0c7 70%, rgba(255, 255, 255, 0) 100%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Header - Estilo de los títulos */
+.App-header h1,
+.App-header h2 {
+  font-family: 'Lora', serif; /* Cambia a 'Quicksand' si prefieres */
+  font-weight: 600;
+  text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.9);
+  letter-spacing: 1px;
+}
+
+/* Ajustar tamaño y diferenciación de títulos */
+.App-header h1 {
+  font-size: 3.5rem; /* Puedes ajustar según necesites */
+}
+
+.App-header h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* Contenido principal */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Modal base */
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 9999999;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;       /* límite de ancho opcional */
+  width: 80%;      
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  cursor: pointer;
+}
+.actions button {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.actions button:hover {
+  background: #50e3c2;
+  transform: scale(1.4);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
