@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { cancelBookedTerapias, availabilityTerapias } from "./BookingFunctions";
 import DateTimeModal from "./DateTimeModal";
+import { API_URL } from "./BookingFunctions"
 import "../App.css";
 
 const BookingComponent = ({ terapias }) => {
@@ -23,7 +24,7 @@ const BookingComponent = ({ terapias }) => {
 
   const handleCancel = async (terapia) => {
     try {
-      await axios.delete(`http://localhost:3000/bookings/${terapia._id}`);
+      await axios.delete(`${API_URL}/bookings/${terapia._id}`);
       cancelBookedTerapias(terapia);
     } catch (error) {
       console.error("Error al cancelar el terapia:", error);

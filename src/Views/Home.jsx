@@ -7,7 +7,7 @@ import Footer from '../Components/Footer';
 import { cancelBookedTerapias } from '../Components/BookingFunctions';
 import './Home.css';
 import DateTimeModal from '../Components/DateTimeModal';
-
+import { API_URL } from './BookingFunctions';
 const Home = () => {
   // ESTADOS
   const [open, setOpen] = useState(false);
@@ -16,7 +16,7 @@ const Home = () => {
 
   // EFECTO para cargar terapias de la BD
   useEffect(() => {
-    axios.get("http://localhost:3000/terapias")
+    axios.get(`${API_URL}/terapias`)
       .then(response => {
         console.log("🔍 Terapias recibidas:", response.data);
         setTerapias(response.data);
