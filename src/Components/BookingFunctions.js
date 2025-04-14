@@ -1,11 +1,11 @@
 // BookingFunctions.js
 import axios from "axios";
-
+import API_URL from "../Config/apiconfig";
 // Modificar la definición de API_URL para usar la lógica basada en la URL actual
-const API_URL = window.location.hostname.includes("vercel.app")
+/* const API_URL = window.location.hostname.includes("vercel.app")
   ? "https://quiroweb-back.onrender.com"
   : "http://localhost:3000";
-
+ */
 console.log("API_URL determinada por hostname:", API_URL);
 console.log("Diagnóstico de variables de entorno:", {
   API_URL: API_URL,

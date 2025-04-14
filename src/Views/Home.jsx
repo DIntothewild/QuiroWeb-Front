@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -7,8 +7,9 @@ import Footer from '../Components/Footer';
 import { cancelBookedTerapias } from '../Components/BookingFunctions';
 import './Home.css';
 import DateTimeModal from '../Components/DateTimeModal';
-import { API_URL } from '../Components/BookingFunctions';
-const Home = () => {
+import API_URL from '../Config/apiconfig';
+
+const Home = () => {  // ¡Faltaba esta línea!
   // ESTADOS
   const [open, setOpen] = useState(false);
   const [selectedTerapia, setSelectedTerapia] = useState(null);
