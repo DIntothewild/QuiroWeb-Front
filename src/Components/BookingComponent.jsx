@@ -1,10 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { cancelBookedTerapias, availabilityTerapias } from "./BookingFunctions";
+import { cancelBookedTerapias, availabilityTerapias, API_URL } from "./BookingFunctions";
 import DateTimeModal from "./DateTimeModal";
-import { API_URL } from "./BookingFunctions"
 import "../App.css";
+
+console.log("API_URL en BookingComponent:", API_URL);
 
 const BookingComponent = ({ terapias }) => {
   const [selectedTerapia, setSelectedTerapia] = useState(null);
