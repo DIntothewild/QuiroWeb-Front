@@ -1,7 +1,20 @@
 // BookingFunctions.js
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL; // ✅ Usamos variable de entorno
+// Modificar la definición de API_URL para usar la lógica basada en la URL actual
+const API_URL = window.location.hostname.includes("vercel.app")
+  ? "https://quiroweb-back.onrender.com"
+  : "http://localhost:3000";
+
+console.log("API_URL determinada por hostname:", API_URL);
+console.log("Diagnóstico de variables de entorno:", {
+  API_URL: API_URL,
+  VITE_API_URL: import.meta.env.VITE_API_URL,
+  MODE: import.meta.env.MODE,
+  PROD: import.meta.env.PROD,
+  isDevelopment: import.meta.env.DEV,
+  windowLocation: window.location.href,
+});
 
 // No se toca, salvo que quieras almacenar más campos
 export function createTerapias(
