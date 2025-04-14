@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Home from './Views/Home.jsx';
 import './App.css';
 import BookingComponent from './Components/BookingComponent.jsx';
@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="App">
          <header className="App-header">
-          <h1>TOTEM SALUD (Wellness Flow)</h1>
+          <h1>TOTEM SALUD  Pequeño cambio para forzar redeploy(Wellness Flow)</h1>
            <h2>Un enfoque en el cuidado natural y el equilibrio personal.</h2> 
           <h1>Booking site</h1>
         </header> 
