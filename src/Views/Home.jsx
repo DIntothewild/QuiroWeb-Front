@@ -7,7 +7,7 @@ import Footer from '../Components/Footer';
 import { cancelBookedTerapias } from '../Components/BookingFunctions';
 import './Home.css';
 import DateTimeModal from '../Components/DateTimeModal';
-import { API_URL } from './BookingFunctions';
+import { API_URL } from '../Components/BookingFunctions';
 const Home = () => {
   // ESTADOS
   const [open, setOpen] = useState(false);
