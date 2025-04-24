@@ -90,7 +90,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
       const formattedDate = selectedDate.format('YYYY-MM-DD');
       const dateTime = `${formattedDate} ${selectedTime}`;
   
-      // Extra segun el tipo de terapia
+      // Extra según tipo de terapia
       let extra = {};
       if (terapia.name === "Quiromasaje") {
         extra = { tipoMasaje, comentario };
@@ -107,13 +107,14 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
           },
         };
       }
-     
+  
+      // Validación teléfono
       const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
       if (phoneNumber && !phoneRegex.test(phoneNumber)) {
-      throw new Error("El número de teléfono no es válido.");
+        throw new Error("El número de teléfono no es válido.");
       }
-      
-      // ✅ Llamada unificada a bookTerapias
+  
+      // Enviar reserva al backend
       await bookTerapias({
         terapia,
         dateTime,
@@ -125,16 +126,14 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   
       setConfirmationMessage(`${name}, tu reserva ha sido realizada con éxito para el ${dateTime}`);
   
-      // Actualiza horas local
-      setReservedTimes(prev => {
-        const currentDay = prev[formattedDate] || [];
-        return {
-          ...prev,
-          [formattedDate]: [...currentDay, selectedTime],
-        };
-      });
+      // 🔁 Actualiza reservedTimes desde el backend
+      const refreshedTimes = await fetchReservedTimes(formattedDate, terapia.name);
+      setReservedTimes(prev => ({
+        ...prev,
+        [formattedDate]: refreshedTimes,
+      }));
   
-      // Reseteo de estados
+      // Resetear inputs
       setName('');
       setPhoneNumber('');
       setSelectedTime(availableTimes[0]);
@@ -148,7 +147,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
       setosteoComentario('');
       setZonaTratar('');
   
-      // Mostrar confirmación
+      // Mostrar modal de confirmación
       setConfirmationModalOpen(true);
       handleClose();
     } catch (error) {
@@ -157,7 +156,6 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
       setConfirmationModalOpen(true);
     }
   };
-
   // Filtra horas según reservedTimes
   const filteredTimes = selectedDate
     ? availableTimes.filter(
