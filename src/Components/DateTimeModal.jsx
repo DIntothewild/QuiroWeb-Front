@@ -43,7 +43,6 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   
   // Estructura: { "YYYY-MM-DD": ["08:00", "09:00"] }
   const [reservedTimes, setReservedTimes] = useState({});
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
   // Quiromasaje
   const [tipoMasaje, setTipoMasaje] = useState('relajante');
   const [comentario, setComentario] = useState('');
@@ -74,7 +73,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         }));
       })
       .catch((err) => console.error(err));
-  }, [terapia, selectedDate, refreshTrigger]);
+  }, [terapia, selectedDate]);
 
   // MANEJADOR DE FECHA
   const handleDateChange = (newValue) => {
@@ -108,13 +107,26 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         };
       }
   
-      // Validación teléfono
+      // Validación de teléfono
       const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
       if (phoneNumber && !phoneRegex.test(phoneNumber)) {
         throw new Error("El número de teléfono no es válido.");
       }
   
-      // Enviar reserva al backend
+      // Actualización optimista: bloquear la hora en local
+      setReservedTimes(prev => {
+        const currentTimes = prev[formattedDate] || [];
+        if (!currentTimes.includes(selectedTime)) {
+          console.log("⏳ Bloqueando hora localmente:", selectedTime);
+          return {
+            ...prev,
+            [formattedDate]: [...currentTimes, selectedTime],
+          };
+        }
+        return prev;
+      });
+  
+      console.log("📤 Enviando reserva al backend...");
       await bookTerapias({
         terapia,
         dateTime,
@@ -123,15 +135,16 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         phoneNumber,
         extra,
       });
-      setRefreshTrigger(prev => prev + 1);
-      setConfirmationMessage(`${name}, tu reserva ha sido realizada con éxito para el ${dateTime}`);
   
-      // 🔁 Actualiza reservedTimes desde el backend
+      console.log("🔄 Refrescando datos desde el backend...");
       const refreshedTimes = await fetchReservedTimes(formattedDate, terapia.name);
+  
       setReservedTimes(prev => ({
         ...prev,
         [formattedDate]: refreshedTimes,
       }));
+  
+      setConfirmationMessage(`${name}, tu reserva ha sido realizada con éxito para el ${dateTime}`);
   
       // Resetear inputs
       setName('');
@@ -147,11 +160,24 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
       setosteoComentario('');
       setZonaTratar('');
   
-      // Mostrar modal de confirmación
       setConfirmationModalOpen(true);
       handleClose();
     } catch (error) {
-      console.error('Error al reservar el terapia:', error);
+      console.error("❌ Error al reservar:", error);
+      
+      // Forzar refresco aunque haya error
+      if (terapia && selectedDate) {
+        const formattedDate = selectedDate.format('YYYY-MM-DD');
+        fetchReservedTimes(formattedDate, terapia.name)
+          .then(times => {
+            setReservedTimes(prev => ({
+              ...prev,
+              [formattedDate]: times,
+            }));
+          })
+          .catch(err => console.error("❌ Error forzando refresco:", err));
+      }
+  
       setConfirmationMessage(`Error al reservar: ${error.message}`);
       setConfirmationModalOpen(true);
     }

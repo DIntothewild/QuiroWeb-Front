@@ -63,12 +63,18 @@ export async function bookTerapias({
       extra,
     };
 
-    console.log("Datos enviados a backend:", requestBody);
+    console.log("📤 Enviando reserva al backend:", requestBody);
 
     const response = await axios.post(`${API_URL}/bookings`, requestBody);
-    console.log("Reserva realizada con éxito:", response.data);
+    console.log("✅ Reserva creada:", response.data);
+
+    // Espera breve por si hay retrasos en la base de datos/render
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    return response.data;
   } catch (error) {
-    console.error("Error al reservar el terapia:", error);
+    console.error("❌ Error al reservar:", error);
+    throw error; // Re-lanzar para que el caller lo capture
   }
 }
 
