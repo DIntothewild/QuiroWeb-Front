@@ -43,7 +43,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   
   // Estructura: { "YYYY-MM-DD": ["08:00", "09:00"] }
   const [reservedTimes, setReservedTimes] = useState({});
-
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   // Quiromasaje
   const [tipoMasaje, setTipoMasaje] = useState('relajante');
   const [comentario, setComentario] = useState('');
@@ -74,7 +74,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         }));
       })
       .catch((err) => console.error(err));
-  }, [terapia, selectedDate]);
+  }, [terapia, selectedDate, refreshTrigger]);
 
   // MANEJADOR DE FECHA
   const handleDateChange = (newValue) => {
@@ -123,7 +123,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         phoneNumber,
         extra,
       });
-  
+      setRefreshTrigger(prev => prev + 1);
       setConfirmationMessage(`${name}, tu reserva ha sido realizada con éxito para el ${dateTime}`);
   
       // 🔁 Actualiza reservedTimes desde el backend
