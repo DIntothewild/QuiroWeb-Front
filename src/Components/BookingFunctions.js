@@ -68,8 +68,11 @@ export async function bookTerapias({
     const response = await axios.post(`${API_URL}/bookings`, requestBody);
     console.log("✅ Reserva creada:", response.data);
 
-    // Espera breve por si hay retrasos en la base de datos/render
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    // Delay only in production
+    if (import.meta.env.PROD) {
+      console.log("⏳ Waiting for Render to process...");
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
 
     return response.data;
   } catch (error) {
