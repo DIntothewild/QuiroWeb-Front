@@ -113,7 +113,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         throw new Error("El número de teléfono no es válido.");
       }
   
-      // Actualización optimista: bloquear la hora en local
+      // ✅ Actualización optimista: bloqueamos la hora inmediatamente en frontend
       setReservedTimes(prev => {
         const currentTimes = prev[formattedDate] || [];
         if (!currentTimes.includes(selectedTime)) {
@@ -136,7 +136,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
         extra,
       });
   
-      console.log("🔄 Refrescando datos desde el backend...");
+      console.log("🔄 Refrescando datos reales desde el backend...");
       const refreshedTimes = await fetchReservedTimes(formattedDate, terapia.name);
   
       setReservedTimes(prev => ({
@@ -164,19 +164,6 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
       handleClose();
     } catch (error) {
       console.error("❌ Error al reservar:", error);
-      
-      // Forzar refresco aunque haya error
-      if (terapia && selectedDate) {
-        const formattedDate = selectedDate.format('YYYY-MM-DD');
-        fetchReservedTimes(formattedDate, terapia.name)
-          .then(times => {
-            setReservedTimes(prev => ({
-              ...prev,
-              [formattedDate]: times,
-            }));
-          })
-          .catch(err => console.error("❌ Error forzando refresco:", err));
-      }
   
       setConfirmationMessage(`Error al reservar: ${error.message}`);
       setConfirmationModalOpen(true);
