@@ -16,6 +16,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { bookTerapias, fetchReservedTimes } from './BookingFunctions';
 import PropTypes from 'prop-types';
+import { CircularProgress } from '@mui/material';
 
 
 const availableTimes = [
@@ -32,6 +33,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   DateTimeModal.propTypes = {
   open: PropTypes.bool.isRequired,
@@ -82,93 +84,113 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   };
 
   // CONFIRMAR RESERVA
-  const handleConfirm = async () => {
-    try {
-      if (!terapia || !selectedDate) return;
-  
-      const formattedDate = selectedDate.format('YYYY-MM-DD');
-      const dateTime = `${formattedDate} ${selectedTime}`;
-  
-      // Extra según tipo de terapia
-      let extra = {};
-      if (terapia.name === "Quiromasaje") {
-        extra = { tipoMasaje, comentario };
-      } else if (terapia.name === "Osteopatía") {
-        extra = { zonaTratar, osteoComentario };
-      } else if (terapia.name === "Entrenamiento personal") {
-        extra = {
-          objetivos: {
-            perderPeso,
-            ganarMusculo,
-            ponermeEnForma,
-            recuperarmeLesion,
-            comentarioEntrenamiento,
-          },
+  // Inside your DateTimeModal.jsx
+
+const updateReservedTimes = async (date, therapy) => {
+  try {
+    const refreshedTimes = await fetchReservedTimes(date, therapy);
+    setReservedTimes(prev => ({
+      ...prev,
+      [date]: refreshedTimes,
+    }));
+    console.log("✅ Updated reserved times:", refreshedTimes);
+  } catch (err) {
+    console.error("❌ Error updating reserved times:", err);
+  }
+};
+
+// Updated handleConfirm
+const handleConfirm = async () => {
+  try {
+    setIsSubmitting(true); // 🔄 Activar spinner
+
+    if (!terapia || !selectedDate) return;
+
+    const formattedDate = selectedDate.format('YYYY-MM-DD');
+    const dateTime = `${formattedDate} ${selectedTime}`;
+
+    // Extra info depending on therapy type
+    let extra = {};
+    if (terapia.name === "Quiromasaje") {
+      extra = { tipoMasaje, comentario };
+    } else if (terapia.name === "Osteopatía") {
+      extra = { zonaTratar, osteoComentario };
+    } else if (terapia.name === "Entrenamiento personal") {
+      extra = {
+        objetivos: {
+          perderPeso,
+          ganarMusculo,
+          ponermeEnForma,
+          recuperarmeLesion,
+          comentarioEntrenamiento,
+        },
+      };
+    }
+
+    // Validate phone number
+    const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
+    if (phoneNumber && !phoneRegex.test(phoneNumber)) {
+      throw new Error("Invalid phone number format.");
+    }
+
+    // Optimistic update
+    setReservedTimes(prev => {
+      const currentTimes = prev[formattedDate] || [];
+      if (!currentTimes.includes(selectedTime)) {
+        console.log("⏳ Blocking time locally:", selectedTime);
+        return {
+          ...prev,
+          [formattedDate]: [...currentTimes, selectedTime],
         };
       }
-  
-      // Validación de teléfono
-      const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
-      if (phoneNumber && !phoneRegex.test(phoneNumber)) {
-        throw new Error("El número de teléfono no es válido.");
-      }
-  
-      // ✅ Actualización optimista: bloqueamos la hora inmediatamente en frontend
-      setReservedTimes(prev => {
-        const currentTimes = prev[formattedDate] || [];
-        if (!currentTimes.includes(selectedTime)) {
-          console.log("⏳ Bloqueando hora localmente:", selectedTime);
-          return {
-            ...prev,
-            [formattedDate]: [...currentTimes, selectedTime],
-          };
-        }
-        return prev;
-      });
-  
-      console.log("📤 Enviando reserva al backend...");
-      await bookTerapias({
-        terapia,
-        dateTime,
-        name,
-        email,
-        phoneNumber,
-        extra,
-      });
-  
-      console.log("🔄 Refrescando datos reales desde el backend...");
-      const refreshedTimes = await fetchReservedTimes(formattedDate, terapia.name);
-  
-      setReservedTimes(prev => ({
-        ...prev,
-        [formattedDate]: refreshedTimes,
-      }));
-  
-      setConfirmationMessage(`${name}, tu reserva ha sido realizada con éxito para el ${dateTime}`);
-  
-      // Resetear inputs
-      setName('');
-      setPhoneNumber('');
-      setSelectedTime(availableTimes[0]);
-      setTipoMasaje('relajante');
-      setComentario('');
-      setPerderPeso(false);
-      setGanarMusculo(false);
-      setPonermeEnForma(false);
-      setRecuperarmeLesion(false);
-      setComentarioEntrenamiento('');
-      setosteoComentario('');
-      setZonaTratar('');
-  
-      setConfirmationModalOpen(true);
-      handleClose();
-    } catch (error) {
-      console.error("❌ Error al reservar:", error);
-  
-      setConfirmationMessage(`Error al reservar: ${error.message}`);
-      setConfirmationModalOpen(true);
+      return prev;
+    });
+
+    console.log("📤 Sending booking to backend...");
+    await bookTerapias({
+      terapia,
+      dateTime,
+      name,
+      email,
+      phoneNumber,
+      extra,
+    });
+
+    console.log("🔄 Refreshing reserved times from backend...");
+    await updateReservedTimes(formattedDate, terapia.name);
+
+    setConfirmationMessage(`${name}, your booking was successful for ${dateTime}`);
+
+    // Reset form fields
+    setName('');
+    setPhoneNumber('');
+    setSelectedTime(availableTimes[0]);
+    setTipoMasaje('relajante');
+    setComentario('');
+    setPerderPeso(false);
+    setGanarMusculo(false);
+    setPonermeEnForma(false);
+    setRecuperarmeLesion(false);
+    setComentarioEntrenamiento('');
+    setosteoComentario('');
+    setZonaTratar('');
+
+    setConfirmationModalOpen(true);
+    handleClose();
+  } catch (error) {
+    console.error("❌ Error creating booking:", error);
+
+    if (terapia && selectedDate) {
+      const formattedDate = selectedDate.format('YYYY-MM-DD');
+      await updateReservedTimes(formattedDate, terapia.name);
     }
-  };
+
+    setConfirmationMessage(`Error creating booking: ${error.message}`);
+    setConfirmationModalOpen(true);
+  } finally {
+    setIsSubmitting(false); // ✅ Desactivar spinner al final pase lo que pase
+  }
+};
   // Filtra horas según reservedTimes
   const filteredTimes = selectedDate
     ? availableTimes.filter(
@@ -376,12 +398,17 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
           </Select>
 
           <Button
-            onClick={handleConfirm}
-            variant="contained"
-            sx={{ mt: 2, mb: 2 }} // 👈 Añadido margen inferior
-            >
-            Reservar
-            </Button>
+  onClick={handleConfirm}
+  variant="contained"
+  disabled={isSubmitting}
+  sx={{ mt: 2, mb: 2 }}
+>
+  {isSubmitting ? (
+    <CircularProgress size={24} color="inherit" />
+  ) : (
+    'Reservar'
+  )}
+</Button>
         </Box>
       </Modal>
 
