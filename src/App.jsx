@@ -11,7 +11,8 @@ function App() {
     <Router>
       <div className="App">
          <header className="App-header">
-          <h1>TOTEM SALUD(Wellness Flow)</h1>
+          <h1>WELLNESS FLOW</h1>
+          <h2>En construccion (coming soon)</h2>
            <h2>Un enfoque en el cuidado natural y el equilibrio personal.</h2> 
           <h1>Booking site</h1>
         </header> 
