@@ -218,7 +218,7 @@ const handleConfirm = async () => {
       >
        <Box
     sx={{
-      background: 'linear-gradient(to bottom right, #e0f7fa, #ffffff)',
+      background: 'linear-gradient(to bottom right, #13547a, #80d0c7)',
       borderRadius: '20px',
       boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
       maxWidth: '450px',
@@ -457,10 +457,9 @@ const handleConfirm = async () => {
             gap: 2
           }}
         >
-          <Typography variant="h6">
-          sx={{ fontWeight: 500, color: '#004D40' }}
-            {confirmationMessage}
-          </Typography>
+        <Typography variant="h6" sx={{ fontWeight: 500, color: '#004D40' }}>
+          {confirmationMessage}
+        </Typography>
 
           <Button
             onClick={() => setConfirmationModalOpen(false)}
