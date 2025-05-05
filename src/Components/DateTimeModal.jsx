@@ -216,29 +216,34 @@ const handleConfirm = async () => {
           zIndex: 99999
         }}
       >
-        <Box
-          sx={{
-            background: 'linear-gradient(to bottom right, #e0f7fa, #ffffff) !important',
-            borderRadius: '20px',
-            padding: '30px 25px 60px', // 👈 extra espacio abajo
-            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-            maxWidth: '450px',
-            width: '90%',
-            maxHeight: '85vh',
-            overflowY: 'auto',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            scrollbarWidth: 'thin' // 👈 opcional
-          }}
-        >
-          <Typography
-    variant="h5"
-    align="center"
-    sx={{ fontWeight: 600, color: '#004D40', mb: 2 }}
+       <Box
+    sx={{
+      background: 'linear-gradient(to bottom right, #e0f7fa, #ffffff)',
+      borderRadius: '20px',
+      boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+      maxWidth: '450px',
+      width: '90%',
+      maxHeight: '85vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    }}
   >
-    Reserva tu sesión de {terapia?.name}
-  </Typography>
+    {/* Contenido con scroll */}
+    <Box
+      sx={{
+        overflowY: 'auto',
+        padding: '30px 25px',
+        flexGrow: 1,
+      }}
+    >
+      <Typography
+        variant="h5"
+        align="center"
+        sx={{ fontWeight: 600, color: '#004D40', mb: 2 }}
+      >
+        Reserva tu sesión de {terapia?.name}
+      </Typography>
 
           <Typography variant="h6">Nombre</Typography>
           <TextField
@@ -408,7 +413,8 @@ const handleConfirm = async () => {
               <MenuItem key={time} value={time}>{time}</MenuItem>
             ))}
           </Select>
-
+</Box>
+<Box sx={{ p: 2, pt: 0, borderTop: '1px solid #ccc' }}>
           <Button
   onClick={handleConfirm}
   variant="contained"
@@ -421,6 +427,7 @@ const handleConfirm = async () => {
     'Reservar'
   )}
 </Button>
+        </Box>
         </Box>
       </Modal>
 
