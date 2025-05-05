@@ -159,7 +159,7 @@ const handleConfirm = async () => {
     console.log("🔄 Refreshing reserved times from backend...");
     await updateReservedTimes(formattedDate, terapia.name);
 
-    setConfirmationMessage(`${name}, your booking was successful for ${dateTime}`);
+    setConfirmationMessage(`✅ ¡Hola ${name}! Tu cita ha sido confirmada para el ${formattedDate} a las ${selectedTime}. ¡Gracias por confiar en Wellness Flow!`);
 
     // Reset form fields
     setName('');
@@ -218,7 +218,7 @@ const handleConfirm = async () => {
       >
        <Box
     sx={{
-      background: 'linear-gradient(to bottom right, #13547a, #80d0c7)',
+      background: 'linear-gradient(to bottom right, #dcedf2, #f5fcff)',
       borderRadius: '20px',
       boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
       maxWidth: '450px',
