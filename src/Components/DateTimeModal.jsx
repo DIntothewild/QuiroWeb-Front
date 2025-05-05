@@ -159,7 +159,7 @@ const handleConfirm = async () => {
     console.log("🔄 Refreshing reserved times from backend...");
     await updateReservedTimes(formattedDate, terapia.name);
 
-    setConfirmationMessage(`${name}, your booking was successful for ${dateTime}`);
+    setConfirmationMessage(`✅ ¡Hola ${name}! Tu cita ha sido confirmada para el ${formattedDate} a las ${selectedTime}. ¡Gracias por confiar en Wellness Flow!`);
 
     // Reset form fields
     setName('');
@@ -218,14 +218,17 @@ const handleConfirm = async () => {
       >
         <Box
           sx={{
-            backgroundColor: 'white',
-            borderRadius: '15px',
-            padding: '20px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            maxWidth: '400px',
-            width: '80%',
-            maxHeight: '80vh',
-            overflowY: 'auto'
+            background: 'linear-gradient(to bottom right, #f0f4f8, #e0f7fa)',
+    borderRadius: '20px',
+    padding: '30px',
+    boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+    maxWidth: '450px',
+    width: '90%',
+    maxHeight: '85vh',
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2
           }}
         >
           <Typography variant="h6">Nombre</Typography>
@@ -277,6 +280,9 @@ const handleConfirm = async () => {
                 onChange={(e) => setComentario(e.target.value)}
                 fullWidth
               />
+              <Typography variant="h5" align="center" sx={{ mb: 2, fontWeight: 600 }}>
+  Reserva tu sesión de {terapia?.name}
+</Typography>
             </>
           )}
 
@@ -401,7 +407,7 @@ const handleConfirm = async () => {
   onClick={handleConfirm}
   variant="contained"
   disabled={isSubmitting}
-  sx={{ mt: 2, mb: 2 }}
+  sx={{ mt: 2, mb: 2, backgroundColor: '#00796B', '&:hover': { backgroundColor: '#004D40' } }}
 >
   {isSubmitting ? (
     <CircularProgress size={24} color="inherit" />
