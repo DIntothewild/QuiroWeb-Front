@@ -218,16 +218,28 @@ const handleConfirm = async () => {
       >
         <Box
           sx={{
-            backgroundColor: 'white',
-            borderRadius: '15px',
-            padding: '20px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            maxWidth: '400px',
-            width: '80%',
-            maxHeight: '80vh',
-            overflowY: 'auto'
+            background: 'linear-gradient(to bottom right, #e0f7fa, #ffffff) !important',
+            borderRadius: '20px',
+            padding: '30px 25px 60px', // 👈 extra espacio abajo
+            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+            maxWidth: '450px',
+            width: '90%',
+            maxHeight: '85vh',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
+            scrollbarWidth: 'thin' // 👈 opcional
           }}
         >
+          <Typography
+    variant="h5"
+    align="center"
+    sx={{ fontWeight: 600, color: '#004D40', mb: 2 }}
+  >
+    Reserva tu sesión de {terapia?.name}
+  </Typography>
+
           <Typography variant="h6">Nombre</Typography>
           <TextField
             placeholder="Tu nombre"
@@ -242,7 +254,7 @@ const handleConfirm = async () => {
             onChange={(e) => setEmail(e.target.value)}
            fullWidth
           />
-          <Typography variant="h6" sx={{ mt: 2 }}>Teléfono (solo lo usaremos en caso de necesidad o cancelación)</Typography>
+          <Typography variant="h6" sx={{ mt: 2 }}>Teléfono {/* (solo lo usaremos en caso de necesidad o cancelación) */}</Typography>
           <TextField
           placeholder="Ej: 612345678"
           value={phoneNumber}
@@ -426,21 +438,31 @@ const handleConfirm = async () => {
       >
         <Box
           sx={{
-            backgroundColor: 'white',
-            borderRadius: '15px',
-            padding: '20px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+            background: 'linear-gradient(to bottom right, #e0f7fa, #ffffff)',
+            borderRadius: '20px',
+            padding: '30px 25px',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
             maxWidth: '400px',
-            width: '80%'
+            width: '90%',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2
           }}
         >
           <Typography variant="h6">
+          sx={{ fontWeight: 500, color: '#004D40' }}
             {confirmationMessage}
           </Typography>
+
           <Button
             onClick={() => setConfirmationModalOpen(false)}
             variant="contained"
-            sx={{ mt: 2 }}
+            sx={{
+              backgroundColor: '#00796B',
+              '&:hover': { backgroundColor: '#004D40' },
+              alignSelf: 'center'
+            }}
           >
             Cerrar
           </Button>
