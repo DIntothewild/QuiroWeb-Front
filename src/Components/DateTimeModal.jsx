@@ -290,18 +290,24 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
             {terapia && terapia.name === "Quiromasaje" && (
               <>
                 <Typography variant="h6" sx={{ mt: 2 }}>Tipo de masaje</Typography>
-                <Select
-                  value={tipoMasaje}
-                  onChange={(e) => setTipoMasaje(e.target.value)}
-                  fullWidth
-                  size="small"
-                >
-                  <MenuItem value="relajante">Relajante</MenuItem>
-                  <MenuItem value="lesiones">Lesiones</MenuItem>
-                  <MenuItem value="espalda">Espalda</MenuItem>
-                  <MenuItem value="piernas">Piernas</MenuItem>
-                  <MenuItem value="otra">Otra parte del cuerpo</MenuItem>
-                </Select>
+<select
+  value={tipoMasaje}
+  onChange={(e) => setTipoMasaje(e.target.value)}
+  style={{
+    width: '100%',
+    padding: '8px',
+    fontSize: '16px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    marginTop: '8px'
+  }}
+>
+  <option value="relajante">Relajante</option>
+  <option value="lesiones">Lesiones</option>
+  <option value="espalda">Espalda</option>
+  <option value="piernas">Piernas</option>
+  <option value="otra">Otra parte del cuerpo</option>
+</select>
 
                 <Typography variant="h6" sx={{ mt: 2 }}>Comentarios</Typography>
                 <TextField
