@@ -102,9 +102,34 @@ const updateReservedTimes = async (date, therapy) => {
 // Updated handleConfirm
 const handleConfirm = async () => {
   try {
-    setIsSubmitting(true); // 🔄 Activar spinner
+    // Validaciones iniciales
+    if (!selectedDate || !selectedTime) {
+      alert("Please select a date and time before proceeding.");
+      return;
+    }
 
-    if (!terapia || !selectedDate) return;
+    // Validate email only if it's provided
+    if (email.trim() !== "") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+    }
+
+    // Validate phone number
+    const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
+    if (phoneNumber && !phoneRegex.test(phoneNumber)) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
+    if (!terapia) {
+      alert("Missing therapy selection.");
+      return;
+    }
+
+    setIsSubmitting(true); // 🔄 Activar spinner
 
     const formattedDate = selectedDate.format('YYYY-MM-DD');
     const dateTime = `${formattedDate} ${selectedTime}`;
@@ -125,12 +150,6 @@ const handleConfirm = async () => {
           comentarioEntrenamiento,
         },
       };
-    }
-
-    // Validate phone number
-    const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
-    if (phoneNumber && !phoneRegex.test(phoneNumber)) {
-      throw new Error("Invalid phone number format.");
     }
 
     // Optimistic update
