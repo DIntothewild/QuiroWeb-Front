@@ -426,18 +426,24 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
             />
 
             <Typography variant="h6" sx={{ mt: 2 }}>
-              Selecciona Hora
-            </Typography>
-            <Select
-              value={selectedTime}
-              onChange={(e) => setSelectedTime(e.target.value)}
-              fullWidth
-              size="small"
-            >
-              {filteredTimes.map(time => (
-                <MenuItem key={time} value={time}>{time}</MenuItem>
-              ))}
-            </Select>
+  Selecciona Hora
+</Typography>
+<select
+  value={selectedTime}
+  onChange={(e) => setSelectedTime(e.target.value)}
+  style={{
+    width: '100%',
+    padding: '8px',
+    fontSize: '16px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    marginTop: '8px'
+  }}
+>
+  {filteredTimes.map((time) => (
+    <option key={time} value={time}>{time}</option>
+  ))}
+</select>
           </Box>
           
           <Box sx={{ p: 2, pt: 0, borderTop: '1px solid #ccc' }}>
