@@ -11,10 +11,13 @@ function App() {
     <Router>
       <div className="App">
          <header className="App-header">
+          <img src="/images/wellness-logo.png" alt="Wellness Flow logo" className="logo" />
+     <div className="header-text">
           <h1>WELLNESS FLOW</h1>
-          <h2>En construccion (coming soon)</h2>
-           <h2>Un enfoque en el cuidado natural y el equilibrio personal.</h2> 
-          <h1>Booking site</h1>
+          <p>En construccion (coming soon)</p>
+           <p>Un enfoque en el cuidado natural y el equilibrio personal.</p> 
+          <h2>Booking site</h2>
+          </div>
         </header> 
         <main>
           <Routes>

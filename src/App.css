@@ -18,6 +18,18 @@ body {
   min-height: 100vh;
 }
 
+.logo {
+  width: 120px;
+  margin: 0 auto 10px auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.App-header .header-text {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 .App-header {
   background: linear-gradient(to bottom, #13547a 40%, #80d0c7 70%, rgba(255, 255, 255, 0) 100%);
   color: white;
@@ -40,11 +52,11 @@ body {
 
 /* Ajustar tamaño y diferenciación de títulos */
 .App-header h1 {
-  font-size: 3.5rem; /* Puedes ajustar según necesites */
+  font-size: 2.2rem; /* Puedes ajustar según necesites */
 }
 
 .App-header h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
@@ -52,6 +64,14 @@ body {
 main {
   flex: 1;
   padding: 20px;
+}
+
+.App-header p {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  color: #e0f7fa;
 }
 
 /* Modal base */

@@ -105,3 +105,10 @@
     margin-bottom: 20px;
   }
 }
+
+.footer-logo {
+  width: 100px;
+  margin: 0 auto 20px auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
