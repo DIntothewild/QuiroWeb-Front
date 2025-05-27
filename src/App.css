@@ -1,26 +1,12 @@
-@import '@fortawesome/fontawesome-free/css/all.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Quicksand:wght@500&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #cfd9df, #e2ebf0);
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* === LOGO por defecto (móvil) === */
 .logo {
-  width: 120px;
+  width: 90px;
   margin: 0 auto 10px auto;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
+/* === HEADER TEXTOS === */
 .App-header .header-text {
   max-width: 90%;
   margin: 0 auto;
@@ -31,7 +17,6 @@ body {
   color: white;
   text-align: center;
   padding: 20px;
-  font-size: 1.5rem;
   font-weight: bold;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
@@ -45,89 +30,66 @@ body {
   letter-spacing: 1px;
 }
 
-.App-header h1 {
-  font-size: 3.5rem;
+/* === ESTILO SOLO PARA ESCRITORIO === */
+@media (min-width: 769px) {
+  .logo {
+    width: 140px;
+    float: left;
+    margin: 10px 40px 0 40px;
+  }
+
+  .App-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 60px;
+    text-align: left;
+  }
+
+  .App-header .header-text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .App-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+  }
+
+  .subtitle {
+    font-size: 1.8rem;
+  }
+
+  .tagline {
+    font-size: 1.4rem;
+  }
+
+  .App-header h2:last-of-type {
+    font-size: 2rem;
+    margin-top: 15px;
+  }
 }
 
-.App-header h2 {
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.subtitle,
-.tagline {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 500;
-  color: #e0f7fa;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin: 8px 0;
-}
-
-.subtitle {
-  font-size: 1.8rem;
-}
-
-.tagline {
-  font-size: 1.4rem;
-}
-
-main {
-  flex: 1;
-  padding: 20px;
-}
-
-.modal {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 9999999;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  width: 80%;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  cursor: pointer;
-}
-
-.actions button {
-  background: #007bff;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 20px;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.actions button:hover {
-  background: #50e3c2;
-  transform: scale(1.4);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* 📱 Versión móvil */
+/* === ESTILO SOLO PARA MÓVIL === */
 @media (max-width: 768px) {
+  .logo {
+    width: 90px;
+    margin: 0 auto 10px auto;
+    float: none;
+  }
+
+  .App-header {
+    text-align: center;
+  }
+
   .App-header h1 {
     font-size: 2.2rem;
   }
 
   .App-header h2 {
     font-size: 1.5rem;
-  }
-
-  .logo {
-    width: 90px;
   }
 
   .subtitle {
@@ -137,4 +99,18 @@ main {
   .tagline {
     font-size: 1rem;
   }
+
+  .App-header h2:last-of-type {
+    font-size: 1.4rem;
+  }
+}
+
+/* === ESTILOS COMUNES === */
+.subtitle,
+.tagline {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  color: #e0f7fa;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 8px 0;
 }
