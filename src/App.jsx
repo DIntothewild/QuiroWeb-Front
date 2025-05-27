@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="App">
          <header className="App-header">
-          <img src="/images/logo-trans.svg" alt="Wellness Flow logo" className="logo" />
+          <img src="/images/logo-transp.svg" alt="Wellness Flow logo" className="logo" />
      <div className="header-text">
           <h1>WELLNESS FLOW</h1>
           <p>En construccion (coming soon)</p>
