@@ -109,3 +109,59 @@
     object-fit: cover;
   }
 }
+
+/* SOLO para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .terapia-section {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .background-image {
+    position: relative;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    max-height: 180px;
+    filter: brightness(50%);
+  }
+
+  .overlay {
+    position: relative;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro */
+    color: white;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+  }
+
+ .overlay .title,
+  .title {
+    font-size: 1.4rem !important;
+    font-weight: bold;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+  }
+
+  .overlay .description,
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 10px;
+  }
+
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .actions button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
