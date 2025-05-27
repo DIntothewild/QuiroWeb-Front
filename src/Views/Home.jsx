@@ -3,7 +3,6 @@ import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
 import Footer from '../Components/Footer';
 import { cancelBookedTerapias } from '../Components/BookingFunctions';
 import './Home.css';
@@ -47,16 +46,6 @@ const Home = () => {
     "Eventos"
   ];
 
-  // ICONOS PARA CADA TERAPIA
-  const terapiaIcons = {
-    "Quiromasaje": "💆‍♀️",
-    "Osteopatía": "🦴",
-    "Entrenamiento personal": "💪",
-    "Consulta nutricional": "🥗",
-    "Naturopatía": "🌿",
-    "Eventos": "🎯"
-  };
-
   // ORDENAR LAS TERAPIAS SEGÚN desiredOrder
   const sortedTherapias = [...terapias].sort((a, b) => {
     return desiredOrder.indexOf(a.name) - desiredOrder.indexOf(b.name);
@@ -66,17 +55,10 @@ const Home = () => {
   return (
     <>
       {/* Contenedor con la clase home-container para el fondo difuminado */}
-      <Grid container className="home-container" spacing={1}>
-        {sortedTherapias.map((terapia, index) => (
-          <Grid item xs={12} key={terapia._id}>
-            <div 
-              className="terapia-section"
-              style={{ 
-                animationDelay: `${index * 0.1}s`,
-                opacity: 0,
-                animation: `slideInUp 0.6s ease-out ${index * 0.1}s forwards`
-              }}
-            >
+      <Grid container className="home-container" spacing={2}>
+        {sortedTherapias.map((terapia) => (
+          <Grid item xs={12} sm={6} md={6} lg={6} key={terapia._id}>
+            <div className="terapia-section">
               <img
                 src={`/images/${
                   terapia.backgroundImage.includes('.')
@@ -88,139 +70,80 @@ const Home = () => {
                 onError={(e) => e.target.src = "/images/events.jpeg"}
               />
               <div className="overlay">
-                {/* Icono decorativo */}
-                <div style={{ 
-                  fontSize: '2.5rem', 
-                  marginBottom: '10px',
-                  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
-                }}>
-                  {terapiaIcons[terapia.name] || "✨"}
-                </div>
-                
                 <Typography className="title" variant="h2" component="h2">
                   {terapia.name}
                 </Typography>
-                
                 <Typography className="description" variant="body1" component="p">
                   {terapia.description || "Descripción no disponible"}
                 </Typography>
 
-                {/* Información adicional con chips atractivos */}
-                <div style={{ marginBottom: '15px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
-                  {terapia.type === "quiromasaje" && terapia.tipoDeMasaje && (
-                    <span className="info-chip">
-                      🔥 {terapia.tipoDeMasaje}
-                    </span>
-                  )}
-
-                  {terapia.type === "osteopatia" && terapia.zonaDelCuerpo && (
-                    <span className="info-chip">
-                      🎯 {terapia.zonaDelCuerpo}
-                    </span>
-                  )}
-                </div>
-
-                {/* Comentarios con mejor presentación */}
-                {terapia.comentarios && terapia.comentarios.length > 0 && (
-                  <div style={{ 
-                    marginBottom: '15px',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    borderRadius: '15px',
-                    padding: '10px',
-                    backdropFilter: 'blur(5px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                {/* Información adicional específica por tipo */}
+                {terapia.type === "quiromasaje" && terapia.tipoDeMasaje && (
+                  <Typography variant="body2" style={{ 
+                    color: 'rgba(255, 255, 255, 0.8)', 
+                    marginBottom: '10px',
+                    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)'
                   }}>
+                    <strong>Tipo:</strong> {terapia.tipoDeMasaje}
+                  </Typography>
+                )}
+
+                {terapia.type === "osteopatia" && terapia.zonaDelCuerpo && (
+                  <Typography variant="body2" style={{ 
+                    color: 'rgba(255, 255, 255, 0.8)', 
+                    marginBottom: '10px',
+                    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)'
+                  }}>
+                    <strong>Zona:</strong> {terapia.zonaDelCuerpo}
+                  </Typography>
+                )}
+
+                {/* Comentarios si existen */}
+                {terapia.comentarios && terapia.comentarios.length > 0 && (
+                  <div style={{ marginBottom: '15px' }}>
                     <Typography variant="body2" style={{ 
                       color: 'rgba(255, 255, 255, 0.9)',
-                      textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)',
-                      fontWeight: 'bold',
-                      marginBottom: '8px'
+                      textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)'
                     }}>
-                      💬 Comentarios:
+                      <strong>Comentarios:</strong>
                     </Typography>
-                    <div style={{ 
+                    <ul style={{ 
                       textAlign: 'left', 
-                      color: 'rgba(255, 255, 255, 0.85)',
+                      color: 'rgba(255, 255, 255, 0.8)',
                       fontSize: '0.9em',
                       textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)'
                     }}>
                       {terapia.comentarios.map((comentario, index) => (
-                        <div key={index} style={{ 
-                          margin: '5px 0',
-                          paddingLeft: '15px',
-                          position: 'relative'
-                        }}>
-                          <span style={{ 
-                            position: 'absolute',
-                            left: '0',
-                            color: '#4ecdc4'
-                          }}>•</span>
-                          {comentario}
-                        </div>
+                        <li key={index}>{comentario}</li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 )}
 
                 <div className="actions">
                   <Button 
                     variant="contained" 
+                    color={terapia.isBooked ? "secondary" : "primary"}
                     onClick={() => handleOpen(terapia)}
                     disabled={terapia.isBooked}
-                    style={{
-                      background: terapia.isBooked 
-                        ? 'linear-gradient(45deg, #757575, #9e9e9e)' 
-                        : 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
-                      position: 'relative',
-                      overflow: 'hidden'
-                    }}
                   >
-                    {terapia.isBooked ? '✓ Reservado' : '🚀 Reservar Ahora'}
+                    {terapia.isBooked ? 'Reservado' : 'Reservar'}
                   </Button>
-                  
                   {terapia.isBooked && (
                     <Button 
                       variant="outlined" 
+                      color="error"
                       onClick={() => cancelBookedTerapias(terapia)}
                       style={{
-                        background: 'rgba(255, 82, 82, 0.2)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
                         color: 'white',
-                        borderColor: 'rgba(255, 82, 82, 0.5)',
-                        backdropFilter: 'blur(5px)',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.background = 'rgba(255, 82, 82, 0.4)';
-                        e.target.style.transform = 'scale(1.05)';
-                      }}
-                      onMouseOut={(e) => {
-                        e.target.style.background = 'rgba(255, 82, 82, 0.2)';
-                        e.target.style.transform = 'scale(1)';
+                        borderColor: 'rgba(255, 255, 255, 0.5)'
                       }}
                     >
-                      ❌ Cancelar
+                      Cancelar
                     </Button>
                   )}
                 </div>
-
-                {/* Badge de estado */}
-                {terapia.isBooked && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '15px',
-                    right: '15px',
-                    background: 'linear-gradient(45deg, #ff4757, #ff6b6b)',
-                    color: 'white',
-                    padding: '5px 12px',
-                    borderRadius: '20px',
-                    fontSize: '0.8rem',
-                    fontWeight: 'bold',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.3)',
-                    animation: 'pulse 2s infinite'
-                  }}>
-                    🔥 RESERVADO
-                  </div>
-                )}
               </div>
             </div>
           </Grid>
