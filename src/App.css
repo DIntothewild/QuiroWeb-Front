@@ -1,6 +1,7 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Quicksand:wght@500&display=swap');
 
+/* Estilos base */
 body {
   margin: 0;
   padding: 0;
@@ -14,78 +15,99 @@ body {
   min-height: 100vh;
 }
 
-.logo {
-  width: 90px;
-  margin: 0 auto 10px auto;
-  display: block;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-.App-header .header-text {
-  max-width: 90%;
-  margin: 0 auto;
-}
-
-.App-header {
-  background: linear-gradient(to bottom, #13547a 40%, #80d0c7 70%, rgba(255, 255, 255, 0) 100%);
-  color: white;
-  text-align: center;
+main {
+  flex: 1;
   padding: 20px;
-  font-weight: bold;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
 }
 
-.App-header h1,
-.App-header h2 {
-  font-family: 'Lora', serif;
-  font-weight: 600;
-  text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.9);
-  letter-spacing: 1px;
+/* Versión escritorio */
+@media (min-width: 769px) {
+  .App-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    text-align: center;
+    padding: 40px 60px;
+    background: linear-gradient(to bottom, #13547a 40%, #80d0c7 70%, rgba(255, 255, 255, 0) 100%);
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+
+  .logo {
+    width: 280px;
+    height: auto;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .App-header .header-text {
+    max-width: 1000px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .App-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.9);
+    margin: 0 0 25px 0;
+  }
+
+  .subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #e0f7fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 0 0 20px;
+    white-space: nowrap;
+  }
+
+  .tagline {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #e0f7fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 0 0 25px;
+    white-space: nowrap;
+  }
+
+  .App-header h2:last-of-type {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.8);
+    margin: 0;
+  }
 }
 
-.App-header h1 {
-  font-size: 3.5rem;
-  margin-bottom: 15px;
-}
-
-.App-header h2 {
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-/* 🎯 Texto personalizado */
-.subtitle,
-.tagline {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 500;
-  color: #e0f7fa;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin: 8px 0;
-}
-
-.subtitle {
-  font-size: 1.8rem;
-}
-
-.tagline {
-  font-size: 2rem; /* Ahora es como un h2 real */
-}
-
-/* 📱 Versión móvil - SIN CAMBIOS */
+/* Versión móvil */
 @media (max-width: 768px) {
+  .App-header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #13547a 40%, #80d0c7 70%, rgba(255, 255, 255, 0) 100%);
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+
   .logo {
     width: 90px;
     margin: 0 auto 10px auto;
     float: none;
   }
 
-  .App-header {
-    text-align: center;
-  }
-
   .App-header h1 {
     font-size: 2.2rem;
+    text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.9);
   }
 
   .App-header h2 {
@@ -94,57 +116,22 @@ body {
 
   .subtitle {
     font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    color: #e0f7fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   .tagline {
     font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    color: #e0f7fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   .App-header h2:last-of-type {
     font-size: 1.4rem;
-  }
-}
-
-/* 🎯 VERSIÓN ESCRITORIO - LOGO LATERAL */
-@media (min-width: 769px) {
-  .App-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    padding: 60px 80px;
-    gap: 100px; /* Más espacio entre logo y texto */
-  }
-
-  .logo {
-    width: 260px;
-    height: auto;
-    flex-shrink: 0;
-  }
-
-  .App-header .header-text {
-    text-align: center; /* Centrado dentro de su columna */
-    max-width: 950px;
-    margin: 0 auto;
-  }
-
-  .App-header h1 {
-    font-size: 5rem;
-    margin-bottom: 25px;
-  }
-
-  .subtitle {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-  }
-
-  .tagline {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-  }
-
-  .App-header h2:last-of-type {
-    font-size: 2.7rem;
-    margin-top: 25px;
+    text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.8);
   }
 }
