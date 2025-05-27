@@ -10,15 +10,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-         <header className="App-header">
-          <img src="/images/logo-transp.svg" alt="Wellness Flow logo" className="logo" />
-     <div className="header-text">
-          <h1>WELLNESS FLOW</h1>
-          <p>En construccion (coming soon)</p>
-           <p>Un enfoque en el cuidado natural y el equilibrio personal.</p> 
-          <h2>Booking site</h2>
-          </div>
-        </header> 
+        <header className="App-header">
+  <img src="/images/logo-transp.svg" alt="Wellness Flow logo" className="logo" />
+  <div className="header-text">
+    <h1>WELLNESS FLOW</h1>
+    <h2 className="subtitle">En construcción (coming soon)</h2>
+    <h3 className="tagline">Un enfoque en el cuidado natural y el equilibrio personal.</h3>
+    <h2>Booking site</h2>
+  </div>
+</header>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />

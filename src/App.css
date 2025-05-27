@@ -54,9 +54,21 @@ body {
   font-weight: 400;
 }
 
-/* Ocultar los párrafos en escritorio */
-.App-header p {
-  display: none;
+.subtitle,
+.tagline {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  color: #e0f7fa;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 8px 0;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+}
+
+.tagline {
+  font-size: 1.4rem;
 }
 
 main {
@@ -114,16 +126,15 @@ main {
     font-size: 1.5rem;
   }
 
-  .App-header p {
-    display: block;
-    font-size: 1rem;
-    margin: 5px 0;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    color: #e0f7fa;
-  }
-
   .logo {
     width: 90px;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
   }
 }
