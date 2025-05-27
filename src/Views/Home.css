@@ -75,3 +75,37 @@
   padding: 12px 24px; /* Botón más grande */
   font-size: 16px;    /* Texto más grande */
 }
+
+/* 🔧 Estilos responsivos para móviles */
+@media (max-width: 600px) {
+  .terapia-section {
+    height: auto;
+    padding: 15px 10px;
+  }
+
+  .title {
+    font-size: 1.4rem !important;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .overlay {
+    padding: 15px;
+  }
+
+  .actions button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .background-image {
+    max-height: 180px;
+    object-fit: cover;
+  }
+}
