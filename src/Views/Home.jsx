@@ -73,7 +73,7 @@ const Home = () => {
   }}
 />
               <div className="overlay">
-                <Typography className="title" variant="h2" component="h2">
+                <Typography className="title" variant="h2" component="h2" translate="no">
                   {terapia.name}
                 </Typography>
                 <Typography className="description" variant="body1" component="p">
