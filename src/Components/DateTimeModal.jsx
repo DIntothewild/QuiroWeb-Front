@@ -353,13 +353,16 @@ const handleCloseSubModal = () => {
       <Modal
         open={open}
         onClose={handleClose}
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          marginTop: { xs: '5%', sm: '10%' },
-          zIndex: 99999
-        }}
+       sx={{
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  mt: { xs: '5%', sm: '3%' }, // Subido un poco en escritorio
+  zIndex: 99999,
+  '& .MuiBox-root': {
+    borderRadius: { xs: '20px', sm: '20px' } // Fuerza esquinas redondeadas
+  }
+}}
       >
         <Box
           sx={{
