@@ -5,8 +5,6 @@ import {
   Modal,
   TextField,
   Button,
-  Select,
-  MenuItem,
   FormGroup,
   FormControlLabel,
   Checkbox
@@ -14,11 +12,28 @@ import {
 import { bookTerapias, fetchReservedTimes } from './BookingFunctions';
 import PropTypes from 'prop-types';
 import { CircularProgress } from '@mui/material';
-import dayjs from 'dayjs';
+//import dayjs from 'dayjs';
 
 const availableTimes = [
   '08:00','09:00','10:00','11:00','12:00',
   '13:00','14:00','15:00','16:00','17:00'
+];
+
+const embodylabRituales = [
+  { key: "pazTotal", nombre: "Paz Total", resumen: "Ansiedad, calma profunda y sueño reparador" },
+  { key: "serenidadProfunda", nombre: "Serenidad Profunda", resumen: "Antiestrés, relajación meditativa" },
+  { key: "relax", nombre: "Relax", resumen: "Relajación general, descanso mental" },
+  { key: "oasisEnCalma", nombre: "Oasis en Calma", resumen: "Estrés físico y mental, descanso profundo" },
+  { key: "equilibrioSereno", nombre: "Equilibrio Sereno", resumen: "Sistema nervioso, reducción del estrés" },
+  { key: "energia", nombre: "Energía", resumen: "Vitalidad, claridad mental, activación" },
+  { key: "renovacionTotal", nombre: "Renovación Total", resumen: "Detox, recuperación y renovación" },
+  { key: "detoxPuraEsencia", nombre: "Detox de Pura Esencia", resumen: "Drenaje linfático y purificación" },
+  { key: "bellezaCorporal", nombre: "Belleza Corporal", resumen: "Estética holística, tonificación" },
+  { key: "formaRadiante", nombre: "Forma Radiante", resumen: "Tonificación corporal y activación sensorial" },
+  { key: "luzTotal", nombre: "Luz Total", resumen: "Rejuvenecimiento facial y energía" },
+  { key: "recargaProfunda", nombre: "Recarga Profunda", resumen: "Recuperación muscular y energía vital" },
+  { key: "alivioMigrañas", nombre: "Alivio de Migrañas", resumen: "Dolores de cabeza, desbloqueo craneal" },
+  { key: "calmaClara", nombre: "Calma Clara", resumen: "Crisis emocional, claridad interior" }
 ];
 
 const DateTimeModal = ({ open, handleClose, terapia }) => {
@@ -32,13 +47,7 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  DateTimeModal.propTypes = {
-    open: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired,
-    terapia: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-  };
+  
   
   // Estructura: { "YYYY-MM-DD": ["08:00", "09:00"] }
   const [reservedTimes, setReservedTimes] = useState({});
@@ -57,6 +66,19 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   const [recuperarmeLesion, setRecuperarmeLesion] = useState(false);
   const [comentarioEntrenamiento, setComentarioEntrenamiento] = useState('');
 
+  // Embody Lab
+  const [openSubModal, setOpenSubModal] = useState(false);
+const [selectedRitual, setSelectedRitual] = useState(null);
+
+const handleOpenSubModal = (ritual) => {
+  setSelectedRitual(ritual);
+  setOpenSubModal(true);
+};
+
+const handleCloseSubModal = () => {
+  setOpenSubModal(false);
+  setSelectedRitual(null);
+};
   // useEffect para cargar reservas POR FECHA
   useEffect(() => {
     if (!terapia || !selectedDate) return; 
@@ -258,7 +280,28 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
             >
               Reserva tu sesión de {terapia?.name}
             </Typography>
-
+              {terapia?.name === "Protocolo Embody Lab" && (
+  <>
+    <Typography variant="h6" sx={{ mt: 2 }}>
+      Escoge tu ritual:
+    </Typography>
+    <ul style={{ listStyle: 'none', padding: 0, marginTop: '10px' }}>
+      {embodylabRituales.map((ritual) => (
+        <li key={ritual.key} style={{ marginBottom: '12px' }}>
+          <strong>{ritual.nombre}</strong>: {ritual.resumen}
+          <Button
+            onClick={() => handleOpenSubModal(ritual)}
+            variant="outlined"
+            size="small"
+            sx={{ marginLeft: '10px', fontSize: '0.75rem' }}
+          >
+            Ver detalles
+          </Button>
+        </li>
+      ))}
+    </ul>
+  </>
+)}
             <Typography variant="h6">Nombre</Typography>
             <TextField
               placeholder="Tu nombre"
@@ -525,8 +568,58 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
           </Button>
         </Box>
       </Modal>
+      {openSubModal && selectedRitual && (
+  <div style={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 999999,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+  }}>
+    <div style={{
+      background: '#ffffff',
+      borderRadius: '12px',
+      padding: '20px',
+      maxWidth: '400px',
+      width: '100%',
+      maxHeight: '80vh',
+      overflowY: 'auto',
+      boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
+    }}>
+      <h2 style={{ marginTop: 0, color: '#004D40' }}>{selectedRitual.nombre}</h2>
+     
+    <p style={{ fontSize: '15px', lineHeight: '1.5em', marginBottom: '10px' }}>
+  {selectedRitual.descripcionLarga}
+</p>
+<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Beneficios:</strong> {selectedRitual.beneficios}</p>
+<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Duración:</strong> {selectedRitual.duracion}</p>
+<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Precio:</strong> {selectedRitual.precio}</p>
+      <Button 
+        variant="contained"
+        onClick={handleCloseSubModal}
+        sx={{ mt: 2 }}
+        fullWidth
+      >
+        Cerrar
+      </Button>
+    </div>
+  </div>
+)}
     </>
   );
 };
 
+DateTimeModal.propTypes = {
+    open: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    terapia: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 export default DateTimeModal;
