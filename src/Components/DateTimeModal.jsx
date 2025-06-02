@@ -20,20 +20,132 @@ const availableTimes = [
 ];
 
 const embodylabRituales = [
-  { key: "pazTotal", nombre: "Paz Total", resumen: "Ansiedad, calma profunda y sueño reparador" },
-  { key: "serenidadProfunda", nombre: "Serenidad Profunda", resumen: "Antiestrés, relajación meditativa" },
-  { key: "relax", nombre: "Relax", resumen: "Relajación general, descanso mental" },
-  { key: "oasisEnCalma", nombre: "Oasis en Calma", resumen: "Estrés físico y mental, descanso profundo" },
-  { key: "equilibrioSereno", nombre: "Equilibrio Sereno", resumen: "Sistema nervioso, reducción del estrés" },
-  { key: "energia", nombre: "Energía", resumen: "Vitalidad, claridad mental, activación" },
-  { key: "renovacionTotal", nombre: "Renovación Total", resumen: "Detox, recuperación y renovación" },
-  { key: "detoxPuraEsencia", nombre: "Detox de Pura Esencia", resumen: "Drenaje linfático y purificación" },
-  { key: "bellezaCorporal", nombre: "Belleza Corporal", resumen: "Estética holística, tonificación" },
-  { key: "formaRadiante", nombre: "Forma Radiante", resumen: "Tonificación corporal y activación sensorial" },
-  { key: "luzTotal", nombre: "Luz Total", resumen: "Rejuvenecimiento facial y energía" },
-  { key: "recargaProfunda", nombre: "Recarga Profunda", resumen: "Recuperación muscular y energía vital" },
-  { key: "alivioMigrañas", nombre: "Alivio de Migrañas", resumen: "Dolores de cabeza, desbloqueo craneal" },
-  { key: "calmaClara", nombre: "Calma Clara", resumen: "Crisis emocional, claridad interior" }
+  {
+    key: "pazTotal",
+    nombre: "Paz Total",
+    resumen: "Ansiedad, calma profunda y sueño reparador",
+    descripcionLarga: "Ritual enfocado en la relajación del sistema nervioso, favoreciendo un descanso profundo, liberación de tensiones emocionales y mejora del sueño.",
+    beneficios: "Reducción de ansiedad, mejora del sueño, calma profunda.",
+    duracion: "90 minutos",
+    precio: "75€"
+  },
+  {
+    key: "serenidadProfunda",
+    nombre: "Serenidad Profunda",
+    resumen: "Antiestrés, relajación meditativa",
+    descripcionLarga: "Ritual meditativo que combina técnicas manuales con aromaterapia para inducir un estado de serenidad y bienestar general.",
+    beneficios: "Relajación mental, reducción de estrés, conexión interior.",
+    duracion: "75 minutos",
+    precio: "70€"
+  },
+  {
+    key: "relax",
+    nombre: "Relax",
+    resumen: "Relajación general, descanso mental",
+    descripcionLarga: "Diseñado para quienes buscan un momento de desconexión total, este ritual proporciona un descanso físico y mental profundo.",
+    beneficios: "Desconexión, descanso mental, relajación física.",
+    duracion: "60 minutos",
+    precio: "60€"
+  },
+  {
+    key: "oasisEnCalma",
+    nombre: "Oasis en Calma",
+    resumen: "Estrés físico y mental, descanso profundo",
+    descripcionLarga: "Este ritual combate el agotamiento físico y mental mediante técnicas integrativas que regeneran cuerpo y mente.",
+    beneficios: "Alivio del agotamiento, descanso profundo, revitalización.",
+    duracion: "90 minutos",
+    precio: "75€"
+  },
+  {
+    key: "equilibrioSereno",
+    nombre: "Equilibrio Sereno",
+    resumen: "Sistema nervioso, reducción del estrés",
+    descripcionLarga: "Ritual creado para restaurar el equilibrio del sistema nervioso autónomo, ideal para personas con ritmos acelerados.",
+    beneficios: "Regulación del sistema nervioso, serenidad interior.",
+    duracion: "75 minutos",
+    precio: "70€"
+  },
+  {
+    key: "energia",
+    nombre: "Energía",
+    resumen: "Vitalidad, claridad mental, activación",
+    descripcionLarga: "Ritual energizante para activar la circulación, estimular el cuerpo y mejorar el enfoque mental.",
+    beneficios: "Aumento de energía, activación del cuerpo y la mente.",
+    duracion: "60 minutos",
+    precio: "65€"
+  },
+  {
+    key: "renovacionTotal",
+    nombre: "Renovación Total",
+    resumen: "Detox, recuperación y renovación",
+    descripcionLarga: "Enfoque integral para eliminar toxinas y revitalizar el cuerpo con técnicas drenantes y tonificantes.",
+    beneficios: "Detox físico, renovación celular, ligereza corporal.",
+    duracion: "90 minutos",
+    precio: "80€"
+  },
+  {
+    key: "detoxPuraEsencia",
+    nombre: "Detox de Pura Esencia",
+    resumen: "Drenaje linfático y purificación",
+    descripcionLarga: "Basado en técnicas suaves de drenaje linfático para favorecer la eliminación de líquidos y toxinas.",
+    beneficios: "Drenaje, reducción de hinchazón, purificación interna.",
+    duracion: "75 minutos",
+    precio: "70€"
+  },
+  {
+    key: "bellezaCorporal",
+    nombre: "Belleza Corporal",
+    resumen: "Estética holística, tonificación",
+    descripcionLarga: "Tratamiento corporal que combina belleza y bienestar con técnicas reafirmantes y aceites naturales.",
+    beneficios: "Tonificación, firmeza de la piel, belleza holística.",
+    duracion: "75 minutos",
+    precio: "70€"
+  },
+  {
+    key: "formaRadiante",
+    nombre: "Forma Radiante",
+    resumen: "Tonificación corporal y activación sensorial",
+    descripcionLarga: "Ritual diseñado para estimular los sentidos y moldear el cuerpo con técnicas dinámicas.",
+    beneficios: "Estímulo sensorial, activación y forma corporal.",
+    duracion: "60 minutos",
+    precio: "65€"
+  },
+  {
+    key: "luzTotal",
+    nombre: "Luz Total",
+    resumen: "Rejuvenecimiento facial y energía",
+    descripcionLarga: "Ritual facial que estimula la regeneración celular, mejora el tono de la piel y aporta luminosidad.",
+    beneficios: "Rejuvenecimiento facial, luminosidad, energía.",
+    duracion: "60 minutos",
+    precio: "60€"
+  },
+  {
+    key: "recargaProfunda",
+    nombre: "Recarga Profunda",
+    resumen: "Recuperación muscular y energía vital",
+    descripcionLarga: "Ritual físico que combina masaje terapéutico con técnicas energéticas para recargar el cuerpo.",
+    beneficios: "Recuperación muscular, recarga energética.",
+    duracion: "75 minutos",
+    precio: "70€"
+  },
+  {
+    key: "alivioMigrañas",
+    nombre: "Alivio de Migrañas",
+    resumen: "Dolores de cabeza, desbloqueo craneal",
+    descripcionLarga: "Técnicas suaves craneales y cervicales para aliviar tensiones y migrañas persistentes.",
+    beneficios: "Alivio del dolor, relajación craneal.",
+    duracion: "50 minutos",
+    precio: "55€"
+  },
+  {
+    key: "calmaClara",
+    nombre: "Calma Clara",
+    resumen: "Crisis emocional, claridad interior",
+    descripcionLarga: "Acompañamiento terapéutico para estados emocionales intensos con enfoque en la contención y claridad.",
+    beneficios: "Claridad mental, alivio emocional.",
+    duracion: "75 minutos",
+    precio: "70€"
+  }
 ];
 
 const DateTimeModal = ({ open, handleClose, terapia }) => {
@@ -55,9 +167,6 @@ const DateTimeModal = ({ open, handleClose, terapia }) => {
   const [tipoMasaje, setTipoMasaje] = useState('relajante');
   const [comentario, setComentario] = useState('');
 
-  // Osteopatía
-  const [zonaTratar, setZonaTratar] = useState("");
-  const [osteoComentario, setosteoComentario] = useState(""); 
 
   // Entrenamiento personal
   const [perderPeso, setPerderPeso] = useState(false);
@@ -151,8 +260,6 @@ const handleCloseSubModal = () => {
       let extra = {};
       if (terapia.name === "Quiromasaje") {
         extra = { tipoMasaje, comentario };
-      } else if (terapia.name === "Osteopatía") {
-        extra = { zonaTratar, osteoComentario };
       } else if (terapia.name === "Entrenamiento personal") {
         extra = {
           objetivos: {
@@ -163,7 +270,17 @@ const handleCloseSubModal = () => {
             comentarioEntrenamiento,
           },
         };
-      }
+      } else if (terapia.name === "Protocolo Embody Lab") {
+  if (!selectedRitual) {
+    alert("Por favor selecciona una terapia de Embody Lab antes de reservar.");
+    setIsSubmitting(false);
+    return;
+  }
+  extra = {
+    ritual: selectedRitual.nombre,
+    key: selectedRitual.key,
+  };
+}
 
       // Optimistic update
       setReservedTimes(prev => {
@@ -204,9 +321,6 @@ const handleCloseSubModal = () => {
       setPonermeEnForma(false);
       setRecuperarmeLesion(false);
       setComentarioEntrenamiento('');
-      setosteoComentario('');
-      setZonaTratar('');
-
       setConfirmationModalOpen(true);
       handleClose();
     } catch (error) {
@@ -280,7 +394,7 @@ const handleCloseSubModal = () => {
             >
               Reserva tu sesión de {terapia?.name}
             </Typography>
-              {terapia?.name === "Protocolo Embody Lab" && (
+             {/*  {terapia?.name === "Protocolo Embody Lab" && (
   <>
     <Typography variant="h6" sx={{ mt: 2 }}>
       Escoge tu ritual:
@@ -301,7 +415,7 @@ const handleCloseSubModal = () => {
       ))}
     </ul>
   </>
-)}
+)} */}
             <Typography variant="h6">Nombre</Typography>
             <TextField
               placeholder="Tu nombre"
@@ -311,7 +425,7 @@ const handleCloseSubModal = () => {
               size="small"
             />
             
-            <Typography variant="h6" sx={{ mt: 2 }}>Correo electrónico (opcional)</Typography>
+            <Typography variant="h6" sx={{ mt: 2 }}>Correo electrónico </Typography>
             <TextField
               placeholder="tucorreo@ejemplo.com"
               value={email}
@@ -328,7 +442,48 @@ const handleCloseSubModal = () => {
               fullWidth
               size="small"
             />
-
+{terapia?.name === "Protocolo Embody Lab" && (
+  <>
+    <Typography variant="h6" sx={{ mt: 2 }}>
+      Selecciona una terapia de Embody Lab
+    </Typography>
+    <FormGroup>
+      {embodylabRituales.map((ritual) => (
+        <Box
+          key={ritual.key}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mb: 1,
+            gap: 1
+          }}
+        >
+          <FormControlLabel
+            control={
+              <input
+                type="radio"
+                name="ritual"
+                value={ritual.key}
+                checked={selectedRitual?.key === ritual.key}
+                onChange={() => setSelectedRitual(ritual)}
+              />
+            }
+            label={ritual.nombre}
+            sx={{ flexGrow: 1 }}
+          />
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => handleOpenSubModal(ritual)}
+          >
+            Ver detalles
+          </Button>
+        </Box>
+      ))}
+    </FormGroup>
+  </>
+)}
             {/* Campos específicos */}
             {terapia && terapia.name === "Quiromasaje" && (
               <>
@@ -592,14 +747,25 @@ const handleCloseSubModal = () => {
       overflowY: 'auto',
       boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
     }}>
-      <h2 style={{ marginTop: 0, color: '#004D40' }}>{selectedRitual.nombre}</h2>
-     
-    <p style={{ fontSize: '15px', lineHeight: '1.5em', marginBottom: '10px' }}>
+     <Typography variant="h6" sx={{ color: '#004D40', fontWeight: 600, mb: 1 }}>
+  {selectedRitual.nombre}
+</Typography>
+
+<Typography variant="body1" sx={{ mb: 2, lineHeight: 1.6 }}>
   {selectedRitual.descripcionLarga}
-</p>
-<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Beneficios:</strong> {selectedRitual.beneficios}</p>
-<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Duración:</strong> {selectedRitual.duracion}</p>
-<p style={{ fontSize: '14px', marginBottom: '6px' }}><strong>Precio:</strong> {selectedRitual.precio}</p>
+</Typography>
+
+<Typography variant="body2" sx={{ mb: 1 }}>
+  <strong>Beneficios:</strong> {selectedRitual.beneficios}
+</Typography>
+
+<Typography variant="body2" sx={{ mb: 1 }}>
+  <strong>Duración:</strong> {selectedRitual.duracion}
+</Typography>
+
+<Typography variant="body2" sx={{ mb: 1 }}>
+  <strong>Precio:</strong> {selectedRitual.precio}
+</Typography>
       <Button 
         variant="contained"
         onClick={handleCloseSubModal}
