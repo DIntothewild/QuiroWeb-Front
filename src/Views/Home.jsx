@@ -37,14 +37,14 @@ const Home = () => {
   };
 
   // ORDEN PERSONALIZADO DE TERAPIAS
-  const desiredOrder = [
-    "Quiromasaje",
-    "Osteopatía",
-    "Entrenamiento personal",
-    "Consulta nutricional",
-    "Naturopatía",
-    "Eventos"
-  ];
+ const desiredOrder = [
+  "Quiromasaje",
+  "Entrenamiento personal",
+  "Consulta nutricional",
+  "Protocolo Embody Lab",
+  "Naturopatía",
+  "Eventos"
+];
 
   // ORDENAR LAS TERAPIAS SEGÚN desiredOrder
   const sortedTherapias = [...terapias].sort((a, b) => {
@@ -59,16 +59,19 @@ const Home = () => {
         {sortedTherapias.map((terapia) => (
           <Grid item xs={12} sm={6} md={6} lg={6} key={terapia._id}>
             <div className="terapia-section">
-              <img
-                src={`/images/${
-                  terapia.backgroundImage.includes('.')
-                    ? terapia.backgroundImage
-                    : terapia.backgroundImage + ".jpg"
-                }`}
-                alt={terapia.name}
-                className="background-image"
-                onError={(e) => e.target.src = "/images/events.jpeg"}
-              />
+             <img
+  src={`/images/${
+    terapia.backgroundImage && terapia.backgroundImage.includes('.')
+      ? terapia.backgroundImage.trim()
+      : (terapia.backgroundImage || "missing") + ".jpg"
+  }`}
+  alt={terapia.name}
+  className="background-image"
+  onError={(e) => {
+    console.log("❌ Imagen fallida:", terapia.backgroundImage);
+    e.target.src = "/images/events.jpeg";
+  }}
+/>
               <div className="overlay">
                 <Typography className="title" variant="h2" component="h2">
                   {terapia.name}
