@@ -280,9 +280,15 @@ const handleCloseSubModal = () => {
     ritual: selectedRitual.nombre,
     key: selectedRitual.key,
   };
-}
 
-      // Optimistic update
+} else if (
+  terapia.name === "Consulta nutricional" ||
+  terapia.name === "Naturopatía"
+) {
+  extra = { comentario };
+}
+  
+// Optimistic update
       setReservedTimes(prev => {
         const currentTimes = prev[selectedDate] || [];
         if (!currentTimes.includes(selectedTime)) {
@@ -397,28 +403,7 @@ const handleCloseSubModal = () => {
             >
               Reserva tu sesión de {terapia?.name}
             </Typography>
-             {/*  {terapia?.name === "Protocolo Embody Lab" && (
-  <>
-    <Typography variant="h6" sx={{ mt: 2 }}>
-      Escoge tu ritual:
-    </Typography>
-    <ul style={{ listStyle: 'none', padding: 0, marginTop: '10px' }}>
-      {embodylabRituales.map((ritual) => (
-        <li key={ritual.key} style={{ marginBottom: '12px' }}>
-          <strong>{ritual.nombre}</strong>: {ritual.resumen}
-          <Button
-            onClick={() => handleOpenSubModal(ritual)}
-            variant="outlined"
-            size="small"
-            sx={{ marginLeft: '10px', fontSize: '0.75rem' }}
-          >
-            Ver detalles
-          </Button>
-        </li>
-      ))}
-    </ul>
-  </>
-)} */}
+           
             <Typography variant="h6">Nombre</Typography>
             <TextField
               placeholder="Tu nombre"
@@ -579,8 +564,31 @@ const handleCloseSubModal = () => {
                 />
               </>
             )}
-
-            {terapia && terapia.name === "Osteopatía" && (
+            {terapia && (
+  (terapia.name === "Consulta nutricional" || terapia.name === "Naturopatía") && (
+    <>
+      <Typography variant="h6" sx={{ mt: 2 }}>
+        Comentarios
+      </Typography>
+     <TextField
+  multiline
+  rows={3}
+  placeholder={
+    terapia.name === "Consulta nutricional"
+      ? "Cuéntanos qué te preocupa sobre tu dieta..."
+      : terapia.name === "Naturopatía"
+      ? "¿Qué te gustaría tratar con naturopatía?"
+      : ""
+  }
+  value={comentario}
+  onChange={(e) => setComentario(e.target.value)}
+  fullWidth
+  size="small"
+/>
+    </>
+  )
+)}
+         {/*    {terapia && terapia.name === "Osteopatía" && (
               <>
                 <Typography variant="h6" sx={{ mt: 2 }}>
                   Zona a tratar
@@ -604,7 +612,7 @@ const handleCloseSubModal = () => {
                 />
               </>
             )}
-
+ */}
             <Typography variant="h6" sx={{ mt: 2 }}>
               Selecciona Fecha
             </Typography>
