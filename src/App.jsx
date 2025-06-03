@@ -14,7 +14,7 @@ function App() {
   <img src="/images/logo-transp.svg" alt="Wellness Flow logo" className="logo" />
   <div className="header-text">
     <h1>WELLNESS FLOW</h1>
-    <h2 className="subtitle">En construcción (coming soon)</h2>
+    {/* <h2 className="subtitle">En construcción (coming soon)</h2> */}
     <h3 className="tagline">Un enfoque en el cuidado natural y el equilibrio personal.</h3>
     <h2>Booking site</h2>
   </div>
