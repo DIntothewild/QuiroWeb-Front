@@ -26,7 +26,7 @@ const Footer = () => {
           <h2>Síguenos</h2>
           <div className="social-icons">
             <a 
-              href="https://www.facebook.com/wellnessflow" 
+              href="https://www.facebook.com/profile.php?id=61576035110721" 
               target="_blank" 
               rel="noopener noreferrer"
             >
