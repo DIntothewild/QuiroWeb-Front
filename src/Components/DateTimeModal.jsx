@@ -367,7 +367,6 @@ const handleCloseSubModal = () => {
   zIndex: 99999,
   '& .MuiBox-root': {
     borderRadius: { xs: '20px', sm: '20px' }, // Fuerza esquinas redondeadas
-    overflow: 'hidden',  
   }
 }}
       >
@@ -381,7 +380,7 @@ const handleCloseSubModal = () => {
             maxHeight: { xs: '90vh', sm: '85vh' },
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            overflowY: 'auto', // ✅ Habilita scroll si se necesita
           }}
         >
           {/* Contenido con scroll */}
