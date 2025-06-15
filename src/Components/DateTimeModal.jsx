@@ -661,26 +661,57 @@ const handleCloseSubModal = () => {
 </select>
           </Box>
           
-          <Box sx={{ p: 2, pt: 0, borderTop: '1px solid #ccc' }}>
-            <Button
-              onClick={handleConfirm}
-              variant="contained"
-              disabled={isSubmitting}
-              fullWidth
-              sx={{ 
-                mt: 1, 
-                mb: 1,
-                fontSize: { xs: '16px', sm: '14px' }, // Prevent iOS zoom
-              }}
-            >
-              {isSubmitting ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                'RESERVAR'
-              )}
-            </Button>
-          </Box>
-        </Box>
+         <Box sx={{ p: 2, pt: 0, borderTop: '1px solid #ccc' }}>
+  {/* BOTÓN CANCELAR */}
+  <Button
+    onClick={() => {
+      handleClose();
+      setName('');
+      setPhoneNumber('');
+      setSelectedTime(availableTimes[0]);
+      setEmail('');
+      setComentario('');
+      setComentarioEntrenamiento('');
+      setPerderPeso(false);
+      setGanarMusculo(false);
+      setPonermeEnForma(false);
+      setRecuperarmeLesion(false);
+      setTipoMasaje('relajante');
+      setSelectedRitual(null);
+    }}
+    variant="outlined"
+    fullWidth
+    sx={{
+      mb: 1,
+      color: '#004D40',
+      borderColor: '#004D40',
+      fontSize: { xs: '16px', sm: '14px' },
+      '&:hover': {
+        backgroundColor: 'rgba(0, 77, 64, 0.1)',
+      },
+    }}
+  >
+    CANCELAR
+  </Button>
+
+  {/* BOTÓN RESERVAR */}
+  <Button
+    onClick={handleConfirm}
+    variant="contained"
+    disabled={isSubmitting}
+    fullWidth
+    sx={{
+      fontSize: { xs: '16px', sm: '14px' },
+    }}
+  >
+    {isSubmitting ? (
+      <CircularProgress size={24} color="inherit" />
+    ) : (
+      'RESERVAR'
+    )}
+  </Button>
+    </Box>
+</Box>
       </Modal>
 
       {/* MODAL DE CONFIRMACIÓN */}
