@@ -750,8 +750,9 @@ const handleCloseSubModal = () => {
   }}>
     <div style={{
       background: '#ffffff',
-      borderRadius: '12px',
+      borderRadius: '20px',
       padding: '20px',
+       overflow: 'hidden',
       maxWidth: '400px',
       width: '100%',
       maxHeight: '80vh',
