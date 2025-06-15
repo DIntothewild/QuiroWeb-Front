@@ -588,31 +588,6 @@ const handleCloseSubModal = () => {
     </>
   )
 )}
-         {/*    {terapia && terapia.name === "Osteopatía" && (
-              <>
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Zona a tratar
-                </Typography>
-                <TextField
-                  placeholder="Ej: Cervical, lumbar..."
-                  value={zonaTratar}
-                  onChange={(e) => setZonaTratar(e.target.value)}
-                  fullWidth
-                  size="small"
-                />
-                
-                <Typography variant="h6" sx={{ mt: 2 }}>Comentarios</Typography>
-                <TextField
-                  multiline
-                  rows={3}
-                  value={osteoComentario}
-                  onChange={(e) => setosteoComentario(e.target.value)}
-                  fullWidth
-                  size="small"
-                />
-              </>
-            )}
- */}
             <Typography variant="h6" sx={{ mt: 2 }}>
               Selecciona Fecha
             </Typography>
@@ -699,13 +674,15 @@ const handleCloseSubModal = () => {
       variant="outlined"
       fullWidth
       sx={{
-        mb: 1,
+        mb: 2,
         color: '#004D40',
-         backgroundColor: '#c62828',
+         backgroundColor:  '#ef5350',
         borderColor: '#004D40',
-        fontSize: { xs: '16px', sm: '14px' },
-        '&:hover': {
-          backgroundColor: 'rgba(0, 77, 64, 0.1)',
+       fontSize: { xs: '16px', sm: '14px' },
+    '&:hover': {
+      backgroundColor: '#e53935', // hover rojo más fuerte
+      borderColor: '#e53935',
+      color: '#fff', // asegura que el texto sea blanco al hacer hover
         },
       }}
     >
