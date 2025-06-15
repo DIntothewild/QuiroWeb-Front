@@ -662,37 +662,6 @@ const handleCloseSubModal = () => {
           </Box>
           
          <Box sx={{ p: 2, pt: 0, borderTop: '1px solid #ccc' }}>
-  {/* BOTÓN CANCELAR */}
-  <Button
-    onClick={() => {
-      handleClose();
-      setName('');
-      setPhoneNumber('');
-      setSelectedTime(availableTimes[0]);
-      setEmail('');
-      setComentario('');
-      setComentarioEntrenamiento('');
-      setPerderPeso(false);
-      setGanarMusculo(false);
-      setPonermeEnForma(false);
-      setRecuperarmeLesion(false);
-      setTipoMasaje('relajante');
-      setSelectedRitual(null);
-    }}
-    variant="outlined"
-    fullWidth
-    sx={{
-      mb: 1,
-      color: '#004D40',
-      borderColor: '#004D40',
-      fontSize: { xs: '16px', sm: '14px' },
-      '&:hover': {
-        backgroundColor: 'rgba(0, 77, 64, 0.1)',
-      },
-    }}
-  >
-    CANCELAR
-  </Button>
 
   {/* BOTÓN RESERVAR */}
   <Button
@@ -710,6 +679,38 @@ const handleCloseSubModal = () => {
       'RESERVAR'
     )}
   </Button>
+    {/* BOTÓN CANCELAR */}
+    <Button
+      onClick={() => {
+        handleClose();
+        setName('');
+        setPhoneNumber('');
+        setSelectedTime(availableTimes[0]);
+        setEmail('');
+        setComentario('');
+        setComentarioEntrenamiento('');
+        setPerderPeso(false);
+        setGanarMusculo(false);
+        setPonermeEnForma(false);
+        setRecuperarmeLesion(false);
+        setTipoMasaje('relajante');
+        setSelectedRitual(null);
+      }}
+      variant="outlined"
+      fullWidth
+      sx={{
+        mb: 1,
+        color: '#004D40',
+         backgroundColor: '#c62828',
+        borderColor: '#004D40',
+        fontSize: { xs: '16px', sm: '14px' },
+        '&:hover': {
+          backgroundColor: 'rgba(0, 77, 64, 0.1)',
+        },
+      }}
+    >
+      CANCELAR
+    </Button>
     </Box>
 </Box>
       </Modal>
