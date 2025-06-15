@@ -646,6 +646,7 @@ const handleCloseSubModal = () => {
     fullWidth
     sx={{
       fontSize: { xs: '16px', sm: '14px' },
+      marginBottom: '24px'
     }}
   >
     {isSubmitting ? (
@@ -674,7 +675,7 @@ const handleCloseSubModal = () => {
       variant="outlined"
       fullWidth
       sx={{
-        mb: 2,
+        mb: 4,
         color: '#004D40',
          backgroundColor:  '#ef5350',
         borderColor: '#004D40',
