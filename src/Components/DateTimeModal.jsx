@@ -366,7 +366,8 @@ const handleCloseSubModal = () => {
   mt: { xs: '5%', sm: '3%' }, // Subido un poco en escritorio
   zIndex: 99999,
   '& .MuiBox-root': {
-    borderRadius: { xs: '20px', sm: '20px' } // Fuerza esquinas redondeadas
+    borderRadius: { xs: '20px', sm: '20px' }, // Fuerza esquinas redondeadas
+    overflow: 'hidden',  
   }
 }}
       >
