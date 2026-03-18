@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        © 2024 Mi Empresa de Terapias. Todos los derechos reservados.
+        © 2026 Wellness Flow. Todos los derechos reservados.
       </div>
       <div className="footer-financiacion">
   <img
