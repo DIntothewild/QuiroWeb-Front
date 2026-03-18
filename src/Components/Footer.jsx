@@ -53,6 +53,13 @@ const Footer = () => {
       <div className="footer-bottom">
         © 2024 Mi Empresa de Terapias. Todos los derechos reservados.
       </div>
+      <div className="footer-financiacion">
+  <img
+    src="/images/financiacion.png"
+    alt="Cofinanciado por la Unión Europea - Junta de Andalucía"
+    className="footer-financiacion-img"
+  />
+</div>
     </footer>
   );
 };
