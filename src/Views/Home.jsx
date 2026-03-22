@@ -44,6 +44,10 @@ const Home = () => {
   "Protocolo Embody Lab",
   "Naturopatía",
   "Bioenergetica",
+  "Osteopatia",
+  "Yoga",
+  "Pole Dance",
+  "Boxing",
   "Eventos"
 ];
 
