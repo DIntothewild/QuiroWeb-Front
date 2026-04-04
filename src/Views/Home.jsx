@@ -134,7 +134,7 @@ const Home = () => {
                   <Button 
                     variant="contained" 
                     color={terapia.isBooked ? "secondary" : "primary"}
-                     onClick={() => terapia.type === "quiromasaje" ? navigate(`/terapias/${terapia.type}`) : handleOpen(terapia)}
+                    onClick={() => terapia.name === "Quiromasaje" ? navigate(`/terapias/quiromasaje`) : handleOpen(terapia)}
                     disabled={terapia.isBooked}
                   >
                     {terapia.isBooked ? 'Reservado' : 'Reservar'}
