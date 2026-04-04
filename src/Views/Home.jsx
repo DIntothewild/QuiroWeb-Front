@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,6 +15,7 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const [selectedTerapia, setSelectedTerapia] = useState(null);
   const [terapias, setTerapias] = useState([]);
+  const navigate = useNavigate();
 
   // EFECTO para cargar terapias de la BD
   useEffect(() => {
@@ -132,7 +134,7 @@ const Home = () => {
                   <Button 
                     variant="contained" 
                     color={terapia.isBooked ? "secondary" : "primary"}
-                    onClick={() => handleOpen(terapia)}
+                     onClick={() => terapia.type === "quiromasaje" ? navigate(`/terapias/${terapia.type}`) : handleOpen(terapia)}
                     disabled={terapia.isBooked}
                   >
                     {terapia.isBooked ? 'Reservado' : 'Reservar'}
