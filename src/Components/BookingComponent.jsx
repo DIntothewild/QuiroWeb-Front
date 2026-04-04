@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { cancelBookedTerapias, availabilityTerapias } from "./BookingFunctions";
@@ -12,6 +13,7 @@ const BookingComponent = ({ terapias }) => {
   const [selectedTerapia, setSelectedTerapia] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleBooking = (type) => {
     const terapiaDisponible = availabilityTerapias(terapias, type);
@@ -51,7 +53,7 @@ const BookingComponent = ({ terapias }) => {
           {t.type === "osteopatia" && t.zonaDelCuerpo && (
             <p><strong>Zona del Cuerpo:</strong> {t.zonaDelCuerpo}</p>
           )}
-          <button onClick={() => handleBooking(t.type)}>Reservar</button>
+          <button onClick={() => navigate(`/terapias/${t.type}`)}>Ver Detalles</button>
           {t.isBooked && (
             <button onClick={() => handleCancel(t)}>Cancelar</button>
           )}
